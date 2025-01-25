@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
 // Example components for different routes
 const Home = () => (
   <div>
     <h1>Welcome to Home</h1>
-    <p>This is the home page of our React Router example.</p>
+    <p>This is the home page of our React Router v6 example.</p>
   </div>
 );
 
@@ -26,7 +26,7 @@ const Contact = () => (
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <nav>
           <ul>
@@ -48,7 +48,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
