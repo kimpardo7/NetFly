@@ -1,55 +1,39 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import Root from './components/Root';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import Articles from './components/Articles';
+import Article from './components/Article';
+import Author from './components/Author';
+import Categories from './components/Categories';
+import Category from './components/Category';
+import Profile from './components/Profile';
 import './App.css';
 
-// Example components for different routes
-const Home = () => (
-  <div>
-    <h1>Welcome to Home</h1>
-    <p>This is the home page of our React Router v6 example.</p>
-  </div>
-);
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path='/' element={<Root/>}>
+    <Route index element={<Home/>} />
+    <Route path="about" element={<About/>} />
+    <Route path="contact" element={<Contact/>} />
+    <Route path="sign-up" element={<SignUp/>} />  
+    <Route path="login" element={<Login/>} />
+    <Route path="articles" element={<Articles/>} />
+    <Route path="article/:title" element={<Article/>} />
+    <Route path="authors/:name" element={<Author/>} />
+    <Route path="article/:id" element={<Article/>} />
+    <Route path="categories" element={<Categories/>} />
+    <Route path="category/:id" element={<Category/>} /> 
+    <Route path="profile" element={<Profile/>} />
+    <Route path="profile/:id" element={<Profile/>} /> 
+  </Route>
+));
 
-const About = () => (
-  <div>
-    <h1>About Us</h1>
-    <p>Learn more about our project.</p>
-  </div>
-);
-
-const Contact = () => (
-  <div>
-    <h1>Contact Us</h1>
-    <p>Get in touch with us.</p>
-  </div>
-);
-
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   );
 }
-
-export default App; 
